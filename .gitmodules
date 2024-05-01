@@ -1,0 +1,3 @@
+[submodule "tryout"]
+	path = tryout
+	url = https://github.com/ThronKatze0/rust-tryout
