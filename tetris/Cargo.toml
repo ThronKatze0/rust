@@ -1,0 +1,16 @@
+[package]
+name = "tetris"
+version = "0.1.0"
+authors = ["winklerv"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+dioxus = { version = "0.5", features = ["web"] }
+
+# Debug
+tracing = "0.1.40"
+dioxus-logger = "0.5.0"
+manganis = "0.2.2"
