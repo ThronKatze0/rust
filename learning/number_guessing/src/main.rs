@@ -8,7 +8,6 @@ fn main() {
     loop {
         let mut guess: String = String::new();
         println!("Give me your number: ");
-        println!("{guess}");
         io::stdin().read_line(&mut guess).expect("IO Error");
         let guess: i32 = match guess.trim().parse() {
             Ok(num) => num,
