@@ -1,6 +1,6 @@
-use std::io;
 use rand::Rng;
 use std::cmp;
+use std::io;
 
 fn main() {
     println!("Welcome to number guessing game!");
@@ -8,9 +8,8 @@ fn main() {
     loop {
         let mut guess: String = String::new();
         println!("Give me your number: ");
-        io::stdin()
-        .read_line(&mut guess)
-        .expect("IO Error");
+        println!("{guess}");
+        io::stdin().read_line(&mut guess).expect("IO Error");
         let guess: i32 = match guess.trim().parse() {
             Ok(num) => num,
             Err(_) => {
@@ -20,14 +19,14 @@ fn main() {
                 }
                 println!("Invalid number!");
                 continue;
-            },
+            }
         };
         match guess.cmp(&rand_number) {
             cmp::Ordering::Less => println!("Wanted number is higher"),
             cmp::Ordering::Equal => {
                 println!("You won!");
                 break;
-            },
+            }
             cmp::Ordering::Greater => println!("Wanted number is lower"),
         }
     }
