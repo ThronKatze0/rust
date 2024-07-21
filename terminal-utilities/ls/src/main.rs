@@ -1,3 +1,4 @@
+use chrono::{DateTime, Local};
 use clap::Parser;
 use core::panic;
 use std::env::current_dir;
@@ -58,20 +59,21 @@ fn main() {
                         let owner_group: u32 = metadata.gid();
                         let size: u64 = metadata.len();
                         // I can't figure out how to format this
-                        let _created = metadata.created().expect("Get a unix system, normie");
+                        let created: DateTime<Local> = metadata
+                            .created()
+                            .expect("Get a unix system, normie")
+                            .into();
                         println!(
-                            "{}",
-                            format!(
-                                "{}{} {} {} {} {} {} {}",
-                                filetype,
-                                user_permissions,
-                                group_permissions,
-                                other_permissions,
-                                owner_user,
-                                owner_group,
-                                size,
-                                filename
-                            )
+                            "{}{}{}{} {} {} {} {} {}",
+                            filetype,
+                            user_permissions,
+                            group_permissions,
+                            other_permissions,
+                            owner_user,
+                            owner_group,
+                            size,
+                            created.format("%Y-%m-%d %H:%M:%S"),
+                            filename
                         )
                     }
                 }
