@@ -3,7 +3,7 @@ use std::cmp;
 use std::io;
 
 fn main() {
-    println!("Welcome to number guessing game!");
+    println!("Welcome to numbur guessing game!");
     let rand_number: i32 = rand::thread_rng().gen_range(0..=100);
     loop {
         let mut guess: String = String::new();
