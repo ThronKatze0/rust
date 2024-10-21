@@ -1,11 +1,10 @@
 use std::{
     fs::File,
     io::{Read, Write},
-    path::Path,
 };
 
 use crate::todos::TodoList;
-use clap::{Args, Parser, Subcommand};
+use clap::{Parser, Subcommand};
 
 mod todos;
 
@@ -34,7 +33,10 @@ const FILE: &'static str = "./data.json";
 fn main() {
     let cli = Cli::parse();
     let mut file_contents = String::new();
-    File::open(FILE).expect("your filesystem no good").read_to_string(&mut file_contents).expect("Cannot read this shit");
+    File::open(FILE)
+        .expect("your filesystem no good")
+        .read_to_string(&mut file_contents)
+        .expect("Cannot read this shit");
     let mut todos: TodoList = if let Ok(result) = serde_json::from_str(&file_contents) {
         result
     } else {
@@ -73,5 +75,8 @@ fn main() {
     }
     let json_text: String = serde_json::to_string(&todos).expect("What the fuck happened?");
     println!("{}", json_text);
-    File::create(FILE).expect("mhm").write_all(&json_text.as_bytes()).expect("writing went wrong");
+    File::create(FILE)
+        .expect("mhm")
+        .write_all(&json_text.as_bytes())
+        .expect("writing went wrong");
 }

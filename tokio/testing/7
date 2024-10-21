@@ -1,0 +1,12 @@
+use std::ops::AsyncFn;
+
+#[tokio::main]
+#[allow(unstable_features)]
+async fn main() {
+    let mut functions: Vec<AsyncFn> = vec![async move || work(12)];
+    tokio::join!();
+}
+
+async fn work(i: i32) {
+    println!("{}", i);
+}

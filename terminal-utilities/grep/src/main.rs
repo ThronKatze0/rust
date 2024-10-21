@@ -11,6 +11,18 @@ use std::{
 struct Args {
     pattern: String,
 }
+trait Test {
+    fn test(&self) -> i32;
+}
+use std::fmt::Display;
+impl<T> Test for T
+where
+    T: Display,
+{
+    fn test(self: &T) -> i32 {
+        32
+    }
+}
 
 fn main() {
     // grep: 10.38s
@@ -19,6 +31,8 @@ fn main() {
     let args = Args::parse();
     let pattern: &str = &args.pattern;
     grep_dir(Path::new("./"), pattern);
+    let test: String = String::new();
+    test.test();
 }
 
 fn grep_dir(dir_path: &Path, pattern: &str) {
